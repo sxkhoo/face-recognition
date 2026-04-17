@@ -1,0 +1,40 @@
+# Model files (large binaries)
+models/*.hef
+
+# Watchlist data (contains biometric embeddings and identity info)
+watchlist/*.npy
+watchlist/*.json
+
+# Debug artifacts
+/tmp/
+*.pyc
+__pycache__/
+*.pyo
+
+# Environment
+.env
+.env.*
+*.env
+venv/
+.venv/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Claude Code
+.claude/
+.codex
+
+# Saved frames / crops from enrollment or debugging
+/crops/
+debug_*.jpg
+
+# OS
+Thumbs.db
+
+AGENT.md

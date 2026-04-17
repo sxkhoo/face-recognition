@@ -1,0 +1,41 @@
+# Face Recognition Pipeline Configuration
+
+camera:
+  source: 2                        # OpenCV VideoCapture index or GStreamer pipeline string
+  width: 1280
+  height: 720
+  fps: 30
+
+detection:
+  backend: "hailo"                   # "hailo" or "cpu"
+  hef_path: "models/scrfd_10g.hef"
+  score_threshold: 0.4
+  nms_iou_threshold: 0.4
+  max_faces: 10
+
+embedding:
+  backend: "hailo"                   # "hailo" or "cpu"
+  hef_path: "models/arcface_r50.hef"
+  embedding_dim: 512
+
+liveness:
+  enabled: false
+  threshold: 0.5
+
+quality:
+  blur_threshold: 30.0            # Laplacian variance below this = blurry
+  min_detection_score: 0.6
+  min_face_size: 56                # Minimum bbox side in pixels
+
+matching:
+  backend: "faiss"                 # "faiss" or "numpy"
+  threshold: 0.4                   # Cosine distance threshold (lower = stricter)
+  watchlist_embeddings: "watchlist/embeddings.npy"
+  watchlist_identities: "watchlist/identities.json"
+
+alert:
+  cooldown_seconds: 30.0
+  camera_id: "cam-01"
+
+logging:
+  level: "INFO"
