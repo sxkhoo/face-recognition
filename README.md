@@ -23,6 +23,7 @@ Real-time face recognition system running on an NXP board with Hailo-8 AI accele
 face_recognition/
 ├── main.py                     # Live pipeline entry point
 ├── config.yaml                 # All configuration and thresholds
+├── requirements.txt            # Python dependencies
 ├── hailo_utils/
 │   ├── __init__.py             # Hailo SDK lazy imports and shared device
 │   ├── detector.py             # SCRFD face detector on Hailo-8
@@ -51,7 +52,15 @@ face_recognition/
 
 ## Setup
 
-### 1. Place model files
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Note: `hailo_platform` (HailoRT Python bindings) is only available on the NXP board and is not pip-installable.
+
+### 2. Place model files
 
 Download or compile the following HEF files and place them in `models/`:
 
@@ -60,7 +69,7 @@ Download or compile the following HEF files and place them in `models/`:
 
 These are Hailo-compiled models and are not included in the repository due to size.
 
-### 2. Configure
+### 3. Configure
 
 Edit `config.yaml` to match your setup:
 
@@ -72,7 +81,7 @@ camera:
   fps: 30
 ```
 
-### 3. Enroll faces
+### 4. Enroll faces
 
 Enroll people into the watchlist using the live camera:
 
@@ -102,7 +111,7 @@ Alternatively, enroll from existing image files:
 python3 scripts/enroll_face.py --name "Alice" --id alice --images photos/alice/
 ```
 
-### 4. Run live recognition
+### 5. Run live recognition
 
 ```bash
 # With display window
@@ -122,7 +131,7 @@ Display overlay:
 
 Press **q** to quit.
 
-### 5. Offline demo
+### 6. Offline demo
 
 Run the pipeline on a folder of images:
 
